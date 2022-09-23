@@ -171,6 +171,24 @@ def mean_prediction(y_true, y_pred):
     return np.mean(y_pred)
 
 
+def error_rate(diff, total):
+    """Compute error rate for classification and regression tasks.
+
+    :param diff: Difference between true and predicted values.
+    :type diff: numpy.ndarray
+    :param total: Total number of samples.
+    :type total: int
+    :return: Error rate.
+    :rtype: float
+    """
+    error = int(diff.sum())
+    if total == 0:
+        metric_value = 0
+    else:
+        metric_value = error / total
+    return metric_value
+
+
 def get_ordered_classes(classes, true_y, pred_y):
     """Get the ordered classes for the given true and predicted labels.
 
@@ -232,7 +250,8 @@ metric_to_func = {
     Metrics.MACRO_RECALL_SCORE: macro_recall_score,
     Metrics.FALSE_POSITIVE_RATE: false_positive_rate,
     Metrics.FALSE_NEGATIVE_RATE: false_negative_rate,
-    Metrics.SELECTION_RATE: selection_rate
+    Metrics.SELECTION_RATE: selection_rate,
+    Metrics.ERROR_RATE: error_rate
 }
 
 metric_to_task = {
