@@ -12,14 +12,15 @@ import { IFeatureMetaData } from "../Interfaces/IMetaData";
 
 export interface IJointDatasetArgs {
   dataset?: any[][];
-  predictedY?: number[];
+  predictedY?: number[] | number[][];
   predictedProbabilities?: number[][];
-  trueY?: number[];
+  trueY?: number[] | number[][];
   localExplanations?:
     | IMultiClassLocalFeatureImportance
     | ISingleClassLocalFeatureImportance;
   metadata: IExplanationModelMetadata;
   featureMetaData?: IFeatureMetaData;
+  targetColumn?: string | string[];
 }
 
 export enum ColumnCategories {
